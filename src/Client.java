@@ -5,65 +5,48 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-    private static String server = "localhost";
+    private Socket socket;
+    private DataOutputStream output;
+    private DataInputStream input;
 
-    private static void handleNewMessages(Socket socket) {
+    private void handleNewMessages() {
         try {
-            DataInputStream inputStream = new DataInputStream(socket.getInputStream());
             while (true) {
-                if (inputStream.available() > 0) {
-                    String message = inputStream.readUTF();
+                if (input.available() > 0) {
+                    String message = input.readUTF();
                     System.out.println(message);
                 }
                 Thread.sleep(30);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
-    public static void main(String[] args) {
-        server = args[0];
-        Socket socket = null;
-        try {
-            int port = 8080;
-            socket = new Socket(server, port);
-            Socket finalSocket = socket;
-            Thread thread = new Thread(() -> handleNewMessages(finalSocket));
-            thread.start();
-            handleSendMessages(socket);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
-
-    private static void handleSendMessages(Socket socket) {
+    private void handleSendMessages() {
         Scanner scanner = new Scanner(System.in);
         try {
-            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
             while (true) {
                 String message = scanner.nextLine();
-                outputStream.writeUTF(message);
+                output.writeUTF(message);
                 if (message.equals("exit"))
                     break;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void Run() {
+        new Thread(this::handleSendMessages).start();
+        handleNewMessages();
+    }
+
+    public Client(Socket socket) {
+        try {
+            this.input = new DataInputStream(socket.getInputStream());
+            this.output = new DataOutputStream(socket.getOutputStream());
+            this.socket = socket;
         } catch (IOException e) {
             e.printStackTrace();
         }
