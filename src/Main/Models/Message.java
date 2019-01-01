@@ -1,4 +1,4 @@
-package java.Models;
+package Main.Models;
 
 
 public class Message {

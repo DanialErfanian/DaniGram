@@ -1,4 +1,4 @@
-package java.Controller;
+package Main.Controller;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

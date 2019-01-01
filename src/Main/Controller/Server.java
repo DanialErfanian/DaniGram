@@ -1,4 +1,4 @@
-package java.Controller;
+package Main.Controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class Server {
 
-    public static void main(String[] args) {
+    public static void main() {
         final int port = 8080;
         final String server = "127.0.0.1";
         Socket socket = null;
