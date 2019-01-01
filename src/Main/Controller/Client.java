@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class Client {
-    private Socket socket;
+    private UIController controller;
     private DataOutputStream output;
     private DataInputStream input;
     private User user;
@@ -24,7 +24,7 @@ public class Client {
                     System.out.println("new message found");
                     YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
                     Message message = mapper.fromJson(json, Message.class);
-                    // TODO what do whit message?
+                    controller.showMessage(message);
                 }
                 Thread.sleep(30);
             }
@@ -33,10 +33,11 @@ public class Client {
         }
     }
 
-    private void handleSendMessages(String text) {
+    void sendMessage(String text) {
         try {
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
             Message message = new Message(text, user);
+            this.controller.showMessage(message);
             output.writeUTF(mapper.toJson(message));
             System.out.println("message sent.");
         } catch (IOException e) {
@@ -53,10 +54,13 @@ public class Client {
         try {
             this.input = new DataInputStream(socket.getInputStream());
             this.output = new DataOutputStream(socket.getOutputStream());
-            this.socket = socket;
             this.user = user;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    void setController(UIController controller) {
+        this.controller = controller;
     }
 }

@@ -5,8 +5,17 @@
     -fx-border-radius: 4px;
 }
 
-.form-control{
+.form-control {
     -fx-background-color: WHITE;
     -fx-border-color: #CCC;
     -fx-border-radius: 3px;
+}
+
+.send-box {
+    -fx-background-color: white;
+    -fx-border-color: #606060;
+}
+
+.message-input {
+    -fx-border-color: white;
 }

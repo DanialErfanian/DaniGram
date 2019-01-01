@@ -25,7 +25,6 @@ class ClientBuilder {
         }
         System.out.println("Constructing Controller.Client.");
         User user = new User(name);
-        Client client = new Client(socket, user);
-        return client;
+        return new Client(socket, user);
     }
 }
