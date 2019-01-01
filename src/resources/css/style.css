@@ -14,8 +14,35 @@
 .send-box {
     -fx-background-color: white;
     -fx-border-color: #606060;
+
+}
+
+
+.VBox-messages{
+    -fx-spacing: 15;
+    -fx-padding: 0 0 20 20;
+    -fx-alignment: BOTTOM_LEFT;
 }
 
 .message-input {
     -fx-border-color: white;
+}
+
+.message-label {
+    -fx-background-color: RED;
+    -fx-border-color: BLACK;
+    -fx-text-fill: WHITE;
+    -fx-font-size: 30;
+    -fx-border-radius: 10;
+    -fx-background-radius: 11;
+    -fx-start-margin: 10 10 10 10;
+    -fx-label-padding: 0 20 0 20;
+}
+
+.audience-message {
+    -fx-background-color: #0b1382;
+}
+
+.user-message {
+    -fx-background-color: #289eed;
 }

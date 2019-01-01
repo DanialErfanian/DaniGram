@@ -16,6 +16,10 @@ public class Client {
     private DataInputStream input;
     private User user;
 
+    public User getUser() {
+        return user;
+    }
+
     private void handleNewMessages() {
         try {
             while (true) {

@@ -13,4 +13,8 @@ public class Message {
         this.text = text;
         this.sender = sender;
     }
+
+    public User getSender() {
+        return sender;
+    }
 }

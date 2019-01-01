@@ -43,6 +43,15 @@ public class UIController {
     }
 
     void showMessage(Message message) {
-        Platform.runLater(() -> messages.getChildren().add(new Label(message.getText())));
+        Platform.runLater(() -> {
+            Label label = new Label(message.getText());
+            label.getStyleClass().add("message-label");
+            if (message.getSender() == this.client.getUser())
+                label.getStyleClass().add("user-message");
+            else
+                label.getStyleClass().add("audience-message");
+
+            messages.getChildren().add(label);
+        });
     }
 }
