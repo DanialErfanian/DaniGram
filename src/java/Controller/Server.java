@@ -1,3 +1,5 @@
+package java.Controller;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,7 +26,7 @@ public class Server {
             }
         }
         if (socket != null) {
-            System.out.println("Constructing Client.");
+            System.out.println("Constructing Controller.Client.");
             Client client = new Client(socket);
             client.Run();
         }
