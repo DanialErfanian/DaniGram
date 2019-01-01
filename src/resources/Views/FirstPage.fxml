@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="586.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.FirstPageController">
     <children>
-        <TextField fx:id="userName" layoutX="240.0" layoutY="130.0" promptText="Enter your name" styleClass="form-control">
+        <TextField fx:id="userName" layoutX="240.0" layoutY="130.0" onAction="#startChat" promptText="Enter your name" styleClass="form-control">
             <font>
                 <Font name="Serif Regular" size="19.0" />
             </font>

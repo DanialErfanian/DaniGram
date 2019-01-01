@@ -1,8 +1,13 @@
 .primary {
     -fx-background-color: #337ab7;
     -fx-border-color: #2e6da4;
-    -fx-background-radius: 4px;
-    -fx-border-radius: 4px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 5px;
+}
+
+.primary:focused {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
 }
 
 .form-control {
@@ -18,7 +23,7 @@
 }
 
 
-.VBox-messages{
+.VBox-messages {
     -fx-spacing: 15;
     -fx-padding: 0 0 20 20;
     -fx-alignment: BOTTOM_LEFT;
@@ -36,7 +41,7 @@
     -fx-border-radius: 10;
     -fx-background-radius: 11;
     -fx-start-margin: 10 10 10 10;
-    -fx-label-padding: 0 20 0 20;
+    -fx-label-padding: 5 20 5 20;
 }
 
 .audience-message {
