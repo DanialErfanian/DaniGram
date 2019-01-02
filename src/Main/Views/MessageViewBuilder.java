@@ -14,6 +14,8 @@ import java.io.FileNotFoundException;
 // TODO: scroll down if needed
 // TODO: style fasele pm az box tosh
 // TODO: send meta data through network
+// TODO: send video
+// TODO: send files with file picker
 
 public class MessageViewBuilder {
     public static HBox build(Message message) {
@@ -41,7 +43,9 @@ public class MessageViewBuilder {
             }
             node = imageView;
         } catch (FileNotFoundException e) {
-            node = new Label(message.getText());
+            Label label = new Label(message.getText());
+            label.setStyle("-fx-background-color: parent");
+            node = label;
         }
         innerHBox.getChildren().add(node);
         outerHBox.getChildren().add(innerHBox);

@@ -17,11 +17,12 @@
 }
 
 .send-box {
+    -fx-border-width: 1px;
     -fx-background-color: white;
-    -fx-border-color: #606060;
+    -fx-border-color: WHITE;
+    -fx-min-width: -fx-min-width;
 
 }
-
 
 .VBox-messages {
     -fx-spacing: 15;
@@ -30,18 +31,19 @@
 }
 
 .message-input {
-    -fx-border-color: white;
+    -fx-text-fill: WHITE;
+    -fx-border-radius: 0;
+    -fx-border-width: 0 1 0 1;
 }
 
 
 .message-outer-HBox HBox {
-    -fx-background-color: #289eed;
     -fx-border-color: BLACK;
     -fx-text-fill: WHITE;
     -fx-border-radius: 10;
     -fx-background-radius: 11;
     -fx-label-padding: 5 20 5 20;
-    -fx-padding: 0 0 0 10;
+    -fx-padding: 5 5 5 5;
     -fx-alignment: CENTER_LEFT;
     -fx-spacing: 3;
     -fx-fit-to-width: true;
@@ -57,6 +59,7 @@
 }
 
 .message-outer-HBox {
+    -fx-background-color: red;
     -fx-label-padding: 5 20 5 20;
     -fx-padding: 0 10 0 10;
     -fx-spacing: 3;
@@ -85,16 +88,25 @@
 
 }
 
-.audience-message HBox {
-    -fx-background-color: #0b1382;
-}
-
 .audience-message {
     -fx-alignment: CENTER_RIGHT;
 }
 
-.user-message HBox {
-    -fx-background-color: #289eed;
+.control-icon {
+    -fx-min-width: 50;
+    -fx-max-width: 50;
+    -fx-min-height: 50;
+    -fx-max-height: 50;
+    -fx-cursor: CLOSED_HAND;
+}
+
+.control-icon:hover {
+    -fx-background-radius: 25px;
+    -fx-background-color: #353c44;
+}
+
+.main-border * {
+    -fx-background-color: #17212b;
 }
 
 @font-face {

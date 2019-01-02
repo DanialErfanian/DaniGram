@@ -13,10 +13,26 @@
 <?import javafx.scene.text.Font?>
 <?import java.lang.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.UIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="800.0" prefWidth="1000.0" styleClass="main-border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.UIController">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="744.0" prefViewportWidth="778.0" styleClass="audiencemessage">
+         <content>
+            <VBox fx:id="messages" styleClass="VBox-messages" BorderPane.alignment="CENTER" />
+         </content>
+      </ScrollPane>
+   </center>
    <bottom>
       <HBox styleClass="send-box" BorderPane.alignment="CENTER">
          <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="control-icon">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#showChooseFileDialog" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/attach-icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
             <TextField fx:id="textInput" onAction="#sendMessage" prefHeight="50.0" promptText="Write a message..." HBox.hgrow="ALWAYS">
                <font>
                   <Font size="17.0" />
@@ -26,22 +42,19 @@
                   <String fx:value="message-input" />
                </styleClass>
             </TextField>
-            <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#sendMessage" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/send-message.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="CLOSED_HAND" />
-               </cursor>
-            </ImageView>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="control-icon">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#sendMessage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/send-message.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </bottom>
-   <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="744.0" prefViewportWidth="778.0" styleClass="audiencemessage">
-         <content>
-            <VBox fx:id="messages" styleClass="VBox-messages" BorderPane.alignment="CENTER" />
-         </content>
-      </ScrollPane>
-   </center>
 </BorderPane>
