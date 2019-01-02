@@ -1,6 +1,8 @@
 package Main.Models;
 
 
+import com.vdurmont.emoji.EmojiParser;
+
 public class Message {
     private String text;
     private User sender;
@@ -10,6 +12,7 @@ public class Message {
     }
 
     public Message(String text, User sender) {
+        text = EmojiParser.parseToUnicode(text);
         this.text = text;
         this.sender = sender;
     }

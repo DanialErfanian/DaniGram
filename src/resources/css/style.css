@@ -81,6 +81,8 @@
     -fx-min-height: -1;
     -fx-pref-width: -1;
     -fx-pref-height: -1;
+    -fx-font-family: OpenSansEmoji;
+
 }
 
 .audience-message HBox {
@@ -93,4 +95,24 @@
 
 .user-message HBox {
     -fx-background-color: #289eed;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: "seguiemj";
+    src: url(../fonts/seguiemj.ttf);
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: "OpenSansEmoji";
+    src: url(../fonts/OpenSansEmoji.ttf);
 }

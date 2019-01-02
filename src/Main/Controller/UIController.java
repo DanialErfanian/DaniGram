@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import resources.Views.MessageViewBuilder;
+import Main.Views.MessageViewBuilder;
 
 import java.io.IOException;
 
