@@ -1,5 +1,6 @@
 package Main.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -20,5 +21,11 @@ public class FirstPageController {
         controller.setName(name);
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(windowEvent -> {
+            stage.close();
+            Platform.exit();
+            System.out.println("Seems we need close application manually :(");
+            System.exit(0);
+        });
     }
 }
