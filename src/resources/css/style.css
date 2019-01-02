@@ -33,21 +33,64 @@
     -fx-border-color: white;
 }
 
-.message-label {
-    -fx-background-color: RED;
+
+.message-outer-HBox HBox {
+    -fx-background-color: #289eed;
     -fx-border-color: BLACK;
     -fx-text-fill: WHITE;
-    -fx-font-size: 30;
     -fx-border-radius: 10;
     -fx-background-radius: 11;
-    -fx-start-margin: 10 10 10 10;
     -fx-label-padding: 5 20 5 20;
+    -fx-padding: 0 0 0 10;
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 3;
+    -fx-fit-to-width: true;
+
+    -fx-max-width: 500;
+    -fx-min-width: -1;
+
+    -fx-min-height: -1;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+    -fx-max-height: -1;
+
 }
 
-.audience-message {
+.message-outer-HBox {
+    -fx-label-padding: 5 20 5 20;
+    -fx-padding: 0 10 0 10;
+    -fx-spacing: 3;
+
+    -fx-min-height: -1;
+    -fx-max-width: -1;
+    -fx-max-height: -1;
+    -fx-min-width: -1;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+}
+
+.message-outer-HBox HBox > * {
+    -fx-wrap-text: true;
+    -fx-text-fill: WHITE;
+    -fx-font-size: 20;
+    -fx-padding: 10 10 10 10;
+
+    -fx-max-width: -1;
+    -fx-max-height: -1;
+    -fx-min-width: -1;
+    -fx-min-height: -1;
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+}
+
+.audience-message HBox {
     -fx-background-color: #0b1382;
 }
 
-.user-message {
+.audience-message {
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.user-message HBox {
     -fx-background-color: #289eed;
 }

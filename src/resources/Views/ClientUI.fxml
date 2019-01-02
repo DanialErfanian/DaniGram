@@ -35,7 +35,7 @@
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="744.0" prefViewportWidth="778.0" styleClass="audiencemessage">
          <content>
-            <VBox fx:id="messages" prefHeight="579.0" prefWidth="328.0" styleClass="VBox-messages" BorderPane.alignment="CENTER" />
+            <VBox fx:id="messages" styleClass="VBox-messages" BorderPane.alignment="CENTER" />
          </content>
       </ScrollPane>
    </center>
