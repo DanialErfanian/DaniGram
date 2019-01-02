@@ -2,13 +2,12 @@ package Main.Controller;
 
 import Main.Models.Message;
 import javafx.application.Platform;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import resources.Views.MessageViewBuilder;
 
 import java.io.IOException;
-
-// TODO: first page on checked change color
 
 public class UIController {
     public TextField textInput;
@@ -44,14 +43,12 @@ public class UIController {
 
     void showMessage(Message message) {
         Platform.runLater(() -> {
-            Label label = new Label(message.getText());
-            label.getStyleClass().add("message-label");
+            HBox hBox = MessageViewBuilder.build(message);
             if (message.getSender() == this.client.getUser())
-                label.getStyleClass().add("user-message");
+                hBox.getStyleClass().add("user-message");
             else
-                label.getStyleClass().add("audience-message");
-
-            messages.getChildren().add(label);
+                hBox.getStyleClass().add("audience-message");
+            messages.getChildren().add(hBox);
         });
     }
 }
