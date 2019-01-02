@@ -40,11 +40,14 @@ public class MessageViewBuilder {
             if (isEmoji) {
                 imageView.setFitHeight(100);
                 imageView.setFitWidth(100);
+            } else {
+                imageView.maxHeight(500);
+                imageView.maxWidth(500);
             }
             node = imageView;
         } catch (FileNotFoundException e) {
             Label label = new Label(message.getText());
-            label.setStyle("-fx-background-color: parent");
+            label.setStyle("-fx-background-color: inherit");
             node = label;
         }
         innerHBox.getChildren().add(node);

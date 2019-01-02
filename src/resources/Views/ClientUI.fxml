@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="800.0" prefWidth="1000.0" styleClass="main-border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller.UIController">
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefViewportHeight="744.0" prefViewportWidth="778.0" styleClass="audiencemessage">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefViewportHeight="744.0" prefViewportWidth="778.0" styleClass="audiencemessage">
          <content>
             <VBox fx:id="messages" styleClass="VBox-messages" BorderPane.alignment="CENTER" />
          </content>

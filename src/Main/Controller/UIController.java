@@ -3,6 +3,7 @@ package Main.Controller;
 import Main.Models.Message;
 import Main.Views.MessageViewBuilder;
 import javafx.application.Platform;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class UIController {
     public TextField textInput;
     public VBox messages;
+    public ScrollPane scrollPane;
     private Client client = null;
     private String name;
 
@@ -28,6 +30,10 @@ public class UIController {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    private void scrollToBottom() {
+        scrollPane.vvalueProperty().bind(messages.heightProperty());
     }
 
     private void sendMessage(String text) {
@@ -58,6 +64,7 @@ public class UIController {
                 hBox.getStyleClass().add("audience-message");
             }
             messages.getChildren().add(hBox);
+            Platform.runLater(this::scrollToBottom);
         });
     }
 
