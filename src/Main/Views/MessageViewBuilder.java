@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 // TODO: style fasele pm az box tosh
 // TODO: send video
@@ -57,13 +57,22 @@ public class MessageViewBuilder {
     }
 
     private static Node showFile(byte[] data) {
+        // TODO support file
         assert false;
         return null;
     }
 
+    private static File getFile(Message message) {
+        return saveMessageDataToFile(message);
+    }
+
     private static Node showImage(Message message) {
-        File file = saveMessageDataToFile(message);
-        assert (file != null);
+        return showImage(getFile(message));
+    }
+
+    private static ImageView showImage(File file) {
+        if (file == null)
+            return null;
         Image image = null;
         try {
             String path = "file://" + file.getCanonicalPath();
@@ -72,82 +81,25 @@ public class MessageViewBuilder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ImageView(image);
+        if (image != null)
+            return new ImageView(image);
+        return null;
     }
 
     private static Node showText(String text) {
-        // TODO: send emoji:happy
+        if (text.startsWith("send emoji:")) {
+            String path = text.substring(11);
+            path = "src/resources/images/emojis/" + path + ".png";
+            File file = new File(path);
+            ImageView image = showImage(file);
+            if (image != null) {
+                image.setFitHeight(100);
+                image.setFitWidth(100);
+                return image;
+            }
+        }
         Label label = new Label(text);
         label.setStyle("-fx-background-color: inherit");
         return label;
     }
-
-    private static ImageView openImage(String path) {
-        Image image = new Image(path);
-        return new ImageView(image);
-    }
-
-    private static Node handleMedia(String text) throws FileNotFoundException {
-        if (!text.startsWith("send "))
-            throw new FileNotFoundException("Invalid format");
-        ImageView imageView = handleImage("send src/resources/images/play-voice-icon.png");
-        imageView.setStyle("-fx-cursor: CLOSED_HAND");
-        imageView.setFitWidth(100);
-        imageView.setFitHeight(100);
-        imageView.setOnMouseClicked(mouseEvent -> {
-            final String musicFile = text.substring(5);
-            Media sound = new Media(new File(musicFile).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
-        });
-        return imageView;
-    }
-
-    private static ImageView handleImage(String text) throws FileNotFoundException {
-        boolean isEmoji = false;
-        if (text.matches("send emoji:.+")) {
-            text = "src/resources/images/emojis/" + text.substring(11) + ".png";
-            isEmoji = true;
-        } else if (text.matches("send .+"))
-            text = text.substring(5);
-        else
-            throw new FileNotFoundException("Invalid text format");
-        System.out.println("trying open path: " + text);
-        File file = new File(text);
-        FileInputStream fileInputStream = new FileInputStream(file);
-        Image image = new Image(fileInputStream);
-        ImageView imageView = new ImageView(image);
-        if (isEmoji) {
-            imageView.setFitHeight(100);
-            imageView.setFitWidth(100);
-        } else {
-            imageView.maxHeight(500);
-            imageView.maxWidth(500);
-        }
-        return imageView;
-    }
-
 }
-
-
-//            boolean isEmoji = false;
-//            if (text.matches("send emoji:.+")) {
-//                text = "src/resources/images/emojis/" + text.substring(11) + ".png";
-//                isEmoji = true;
-//            } else if (text.matches("send .+"))
-//                text = text.substring(5);
-//            else
-//                throw new FileNotFoundException("Invalid text format");
-//            System.out.println("trying open path: " + text);
-//            File file = new File(text);
-//            FileInputStream fileInputStream = new FileInputStream(file);
-//            Image image = new Image(fileInputStream);
-//            ImageView imageView = new ImageView(image);
-//            if (isEmoji) {
-//                imageView.setFitHeight(100);
-//                imageView.setFitWidth(100);
-//            } else {
-//                imageView.maxHeight(500);
-//                imageView.maxWidth(500);
-//            }
-//            node = imageView;
