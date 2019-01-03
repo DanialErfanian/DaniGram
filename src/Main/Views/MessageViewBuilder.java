@@ -45,17 +45,10 @@ public class MessageViewBuilder {
         try {
             File file = new File(Constants.DOWNLOAD_PATH + message.getFileName());
             System.out.println(file);
-            System.out.println(1);
             file.createNewFile();
-            System.out.println(2);
-            System.out.println(file);
-            System.out.println(3);
             FileOutputStream fos = new FileOutputStream(file, false);
-            System.out.println(4);
             fos.write(message.getData());
-            System.out.println(5);
             fos.close();
-            System.out.println(6);
             return file;
         } catch (IOException ignored) {
             System.out.println("Exception in saving...");
@@ -71,7 +64,6 @@ public class MessageViewBuilder {
     private static Node showImage(Message message) {
         File file = saveMessageDataToFile(message);
         assert (file != null);
-        System.out.println(file);
         Image image = null;
         try {
             String path = "file://" + file.getCanonicalPath();
