@@ -1,6 +1,7 @@
 package Main.Controller;
 
 import Main.Models.Message;
+import Main.Models.User;
 import Main.Views.MessageViewBuilder;
 import javafx.application.Platform;
 import javafx.scene.control.ScrollPane;
@@ -11,6 +12,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 public class UIController {
     public TextField textInput;
@@ -43,6 +45,10 @@ public class UIController {
         System.out.println(text);
     }
 
+    private void sendMessage(Message message) {
+        if (client != null)
+            client.sendMessage(message);
+    }
 
     public void sendMessage() {
         sendMessage(textInput.getText());
@@ -55,7 +61,13 @@ public class UIController {
 
     void showMessage(Message message) {
         Platform.runLater(() -> {
-            HBox hBox = MessageViewBuilder.build(message);
+            HBox hBox;
+            try {
+                hBox = MessageViewBuilder.build(message);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
             if (message.getSender() == this.client.getUser()) {
                 hBox.getStyleClass().add("user-message");
                 hBox.getChildren().get(0).setStyle("-fx-background-color: #73b9f5");
@@ -71,7 +83,18 @@ public class UIController {
     public void showChooseFileDialog() {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) sendMessage("send " + selectedFile.getPath());
+        if (selectedFile != null) {
+            try {
+                Message.Type type = Message.getFileType(selectedFile);
+                User user = this.client.getUser();
+                Message message = new Message(user,
+                        type,
+                        Files.readAllBytes(selectedFile.toPath()),
+                        selectedFile.getName());
+                sendMessage(message);
+            } catch (IOException ignored) {
+            }
+        }
     }
 
 }

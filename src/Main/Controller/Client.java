@@ -16,7 +16,7 @@ public class Client {
     private DataInputStream input;
     private User user;
 
-    public User getUser() {
+    User getUser() {
         return user;
     }
 
@@ -38,9 +38,12 @@ public class Client {
     }
 
     void sendMessage(String text) {
+        sendMessage(new Message(text, user));
+    }
+
+    void sendMessage(Message message) {
         try {
             YaGson mapper = new YaGsonBuilder().setPrettyPrinting().create();
-            Message message = new Message(text, user);
             this.controller.showMessage(message);
             output.writeUTF(mapper.toJson(message));
             System.out.println("message sent.");
